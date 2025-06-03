@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+  <title>Laboratorio 2 Sara Martínez</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+      background-color: #fdfdfd;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+    }
+
+    fieldset {
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 30px;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+
+    .resultado {
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Laboratorio JavaScript Sara Martínez</h1>
+    <br>
+    <fieldset>
+    <legend>1. ¿Es un palíndromo?</legend>
+    <input type="text" id="palindromoInput">
+    <button onclick="verificarPalindromo()">Verificar</button>
+    <div id="palindromoResultado" class="resultado"></div>
+    </fieldset>
+    <br>
+    <fieldset> 
+    <legend>2. ¿Cuál número es mayor?</legend>
+    <input type="number" id="numero1"> <input type="number" id="numero2">
+    <button onclick="compararNumeros()">Comparar Numero</button>
+    <div id="mayorResultado" class="resultado"></div>
+    </fieldset>
+    <br>
+    <fieldset>
+    <legend>3. Vocales en una frase</legend>
+    <input type="text" id="fraseVocales">
+    <button onclick="mostrarVocales()">Mostrar Vocales</button>
+    <div id="vocalesResultado" class="resultado"></div>
+    </fieldset>
+    <br>
+    <fieldset>
+    <legend>4. Contar vocales</legend>
+    <input type="text" id="fraseContar">
+    <button onclick="contarVocales()">Contar Vocales</button>
+    <div id="conteoResultado" class="resultado"></div>
+    </fieldset>
+    <br>
+  <script>
+    // Palindromo   -- 1. Detectar si la cadena de entrada en un palíndromo.
+    function verificarPalindromo() {
+      let texto = document.getElementById("palindromoInput").value.toLowerCase().replace(/\s/g, "");
+      let invertido = texto.split('').reverse().join('');
+      document.getElementById("palindromoResultado").innerText = texto === invertido ? "¡Es un palíndromo!" : "No es un palíndromo";
+    }
+
+    // Comparar numeros   --   2. Escribe un programa que pida dos números y escriba en la pantalla cual es el mayor.
+    function compararNumeros() {
+      let a = parseFloat(document.getElementById("numero1").value);
+      let b = parseFloat(document.getElementById("numero2").value);
+      if (a > b) {
+        document.getElementById("mayorResultado").innerText = "El número mayor es 🥁: " + a;
+      } else if (b > a) {
+        document.getElementById("mayorResultado").innerText = "El número mayor es 🥁: " + b;
+      } else {
+        document.getElementById("mayorResultado").innerText = "Son iguales.";
+      }
+    }
+
+    // Mostrar vocales  --  3. Escribe un programa que pida una frase y escriba las vocales que aparecen.
+    function mostrarVocales() {
+      let frase = document.getElementById("fraseVocales").value.toLowerCase();
+      let vocales = frase.match(/[aeiou]/g);
+      document.getElementById("vocalesResultado").innerText = vocales ? vocales.join(', ') : "No hay vocales";
+    }
+
+    // Contar vocales  -- Escribe un programa que pida una frase y escriba cuántas veces aparecen cada una de las vocales.
+    function contarVocales() {
+      let frase = document.getElementById("fraseContar").value.toLowerCase();
+      let conteo = { a: 0, e: 0, i: 0, o: 0, u: 0 };
+      for (let letra of frase) {
+        if (conteo.hasOwnProperty(letra)) {
+          conteo[letra]++;
+        }
+      }
+      document.getElementById("conteoResultado").innerText = `a: ${conteo.a}, e: ${conteo.e}, i: ${conteo.i}, o: ${conteo.o}, u: ${conteo.u}`;
+    }
+
+  </script>
+</body>
+</html>
